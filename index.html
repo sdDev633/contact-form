@@ -17,7 +17,7 @@
             background: #f4f4f4;
         }
         .container {
-            width: 300px;
+            width: 320px;
             margin: 50px auto;
             padding: 20px;
             background: #fff;
@@ -45,13 +45,32 @@
 
 <div class="container">
     <h2>Contact Us</h2>
-    <form>
-        <input type="text" name="name" placeholder="Your Name" required>
-        <input type="email" name="email" placeholder="Your Email" required>
-        <textarea name="message" placeholder="Your Message" rows="4" required></textarea>
-        <button type="submit">Send</button>
+
+    <form id="contactForm">
+        <input type="text" id="name" name="name" placeholder="Your Name" required>
+        <input type="email" id="email" name="email" placeholder="Your Email" required>
+        <textarea id="message" name="message" placeholder="Your Message" rows="4" required></textarea>
+        <button type="submit" id="submitBtn">Send</button>
     </form>
+
 </div>
+
+<script>
+document.getElementById("contactForm").addEventListener("submit", function(e) {
+
+    // OPTIONAL: prevent default if you're not sending to backend yet
+    // e.preventDefault();
+
+    // Push event to GTM dataLayer
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+        event: "contact_form_submit",
+        form_id: "contactForm",
+        form_name: "contact_form"
+    });
+
+});
+</script>
 
 </body>
 </html>
